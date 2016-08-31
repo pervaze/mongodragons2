@@ -2,8 +2,8 @@
 
 app.controller('homeController', function ($scope, $http) {
 
-    $http.get('api/dragon').success(function (data) {
-        $scope.dragons = data;
+    $http.get('api/dragon').success(function (result) {
+        $scope.dragons = result.data;
     });
 
     $scope.spawn = function () {
@@ -13,12 +13,12 @@ app.controller('homeController', function ($scope, $http) {
     }
 
     $scope.remove = function (dragon) {
-        if (confirm('Are you sure?')) {
-            $http.post('api/dragon/remove', JSON.stringify(dragon)).success(function (result) {
-                if (result) {
-                    $scope.dragons.splice($scope.dragons.indexOf(dragon), 1);
-                }
-            });
-        }
+        $http.post('api/dragon/remove', JSON.stringify(dragon)).success(function (result) {
+            if (result.status) {
+                $scope.dragons.splice($scope.dragons.indexOf(dragon), 1);
+            } else {
+                console.log("Error Occured");
+            }
+        });
     }
 });

@@ -16,9 +16,7 @@ namespace MongoDragons2.Controllers
             return new ResponseModel<IEnumerable<Dragon>>()
             {
                 data = dragons,
-                statusCode = 1,
-                statusMessage = ""
-
+                status = true
             };
         }
 
@@ -28,10 +26,15 @@ namespace MongoDragons2.Controllers
             return dragon;
         }
 
-        public bool Remove(Dragon dragon)
+        public ResponseModel<object> Remove(Dragon dragon)
         {
-            bool result = DragonRepository.Remove(dragon);
-            return result;
+            ResponseModel<object> response = new ResponseModel<object>();
+            response.status = DragonRepository.Remove(dragon);
+            if (response.status != true)
+            {
+                response.statusMessage = "Error Occured";
+            }
+            return response;
         }
     }
 }
