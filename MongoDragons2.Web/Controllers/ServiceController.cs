@@ -22,9 +22,7 @@ namespace MongoDragons2.Web.Controllers
         public JsonResult Spawn()
         {
             // Commented out for demo.
-            // Dragon dragon = DragonRepository.Spawn();
-            Dragon dragon = new Dragon() { Name = "Test", Age = 10, Gold = 100 };
-
+            Dragon dragon = DragonRepository.Spawn();
             return Json(dragon);
         }
 
@@ -32,9 +30,7 @@ namespace MongoDragons2.Web.Controllers
         public JsonResult Remove(Dragon dragon)
         {
             // Commented out for demo.
-            // bool result = DragonRepository.Remove(dragon);
-            bool result = true;
-
+            bool result = DragonRepository.Remove(dragon);
             return Json(result);
         }
     }
