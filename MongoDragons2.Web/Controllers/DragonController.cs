@@ -4,15 +4,22 @@ using System.Net;
 using System.Web.Http;
 using MongoDragons2.Repository;
 using MongoDragons2.Types;
+using MongoDragons2.Models;
 
 namespace MongoDragons2.Controllers
 {
     public class DragonController : ApiController
     {
-        public IEnumerable<Dragon> Get()
+        public ResponseModel<IEnumerable<Dragon>> Get()
         {
             IEnumerable<Dragon> dragons = DragonRepository.ToList();
-            return dragons;
+            return new ResponseModel<IEnumerable<Dragon>>()
+            {
+                data = dragons,
+                statusCode = 1,
+                statusMessage = ""
+
+            };
         }
 
         public Dragon Spawn()

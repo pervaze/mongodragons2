@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDragons2.Handlers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -17,6 +18,7 @@ namespace MongoDragons2
                 defaults: new { action=RouteParameter.Optional, id = RouteParameter.Optional }
             );
 
+            //config.MessageHandlers.Add(new MetadataHandler());
             var jsonFormatter = config.Formatters.JsonFormatter;
             config.Formatters.Clear();
             config.Formatters.Add(jsonFormatter);
