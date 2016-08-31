@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MongoDragons2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="Scripts/home.js"></script>
+</head>
+<body>
+
+    <h2>Hello World!</h2>
+
+    <div data-ng-app='homeApplication' data-ng-controller='homeController'>
+        <table>
+            <thead>
+                <tr>
+                    <td data-ng-click="sort='Name'">Name</td>
+                    <td data-ng-click="sort='Age'">Age</td>
+                    <td>Description</td>
+                    <td data-ng-click="sort='Gold'">Gold</td>
+                    <td data-ng-click="sort='HP'">HP</td>
+                    <td>Weapon</td>
+                    <td>Date Born</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat='dragon in dragons | orderBy:sort'>
+                    <td>{{ dragon.Name }}</td>
+                    <td>{{ dragon.Age }}</td>
+                    <td>{{ dragon.Description }}</td>
+                    <td>{{ dragon.Gold }}</td>
+                    <td>{{ dragon.MaxHP }}</td>
+                    <td>{{ dragon.Weapon.Name }} ({{ dragon.Weapon.Description }})</td>
+                    <td>{{ dragon.DateBorn }}</td>
+                    <td>
+                        <div style="color: #ccc; cursor: pointer;" data-ng-click='remove(dragon)'>X</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>
+            <input type='button' value='Spawn' data-ng-click='spawn()' />
+        </p>
+    </div>
+   
+</body>
+</html>
